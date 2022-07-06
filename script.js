@@ -127,7 +127,7 @@ async function getWeather() {
 	const { forecastday } = data.forecast;
 	for (let i = 1; i < forecastday.length; i++) {
 		const { icon, text } = forecastday[i].day.condition;
-		const { maxtemp_f, mintemp_f, daily_chance_of_rain } =
+		const { maxtemp_c, mintemp_c, daily_chance_of_rain } =
 			forecastday[i].day;
 
 		let gridElement = document.createElement("div");
@@ -156,7 +156,7 @@ async function getWeather() {
 		// max temp
 		let maxTempElement = document.createElement("span");
 		let maxTempText = document.createTextNode(
-			Math.round(maxtemp_f) + "° C - "
+			Math.round(maxtemp_c) + "° C - "
 		);
 		maxTempElement.appendChild(maxTempText);
 		maxTempElement.classList.add("maxmin");
@@ -165,7 +165,7 @@ async function getWeather() {
 		// min temp
 		// let minTempElement = document.createElement("span");
 		let minTempText = document.createTextNode(
-			Math.round(mintemp_f) + "° C"
+			Math.round(mintemp_c) + "° C"
 		);
 		maxTempElement.appendChild(minTempText);
 		// minTempElement.classList.add("maxmin");
