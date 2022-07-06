@@ -89,8 +89,8 @@ async function getWeather() {
 
 	// Current conditions
 	const { text, icon } = data.current.condition;
-	const { feelslike_f, gust_mph, humidity, temp_f } = data.current;
-	current_info = { text, icon, temp_f, feelslike_f, humidity, gust_mph };
+	const { temp_c, feelslike_c, gust_kph, humidity } = data.current;
+	current_info = { text, icon, temp_c, feelslike_c, humidity, gust_kph };
 
 	// Current condition icon
 	document.getElementById("current-img").src = "https:" + current_info.icon;
@@ -108,11 +108,11 @@ async function getWeather() {
 	document.getElementById("current-text").appendChild(currentText);
 
 	// Current temperature
-	let currentTempText = document.createTextNode(Math.round(temp_f));
+	let currentTempText = document.createTextNode(Math.round(temp_c));
 	document.getElementById("current-temp").appendChild(currentTempText);
 
 	// Feels like
-	let feelsLike = document.createTextNode(Math.round(feelslike_f));
+	let feelsLike = document.createTextNode(Math.round(feelslike_c));
 	document.getElementById("feels-like").appendChild(feelsLike);
 
 	// Current humidity
@@ -120,7 +120,7 @@ async function getWeather() {
 	document.getElementById("current-humidity").appendChild(currentHumidity);
 
 	// Current windspeed
-	let currentGust = document.createTextNode(gust_mph);
+	let currentGust = document.createTextNode(gust_kph);
 	document.getElementById("current-gust").appendChild(currentGust);
 
 	// 2 day forecast
@@ -156,7 +156,7 @@ async function getWeather() {
 		// max temp
 		let maxTempElement = document.createElement("span");
 		let maxTempText = document.createTextNode(
-			Math.round(maxtemp_f) + "° F - "
+			Math.round(maxtemp_f) + "° C - "
 		);
 		maxTempElement.appendChild(maxTempText);
 		maxTempElement.classList.add("maxmin");
@@ -165,7 +165,7 @@ async function getWeather() {
 		// min temp
 		// let minTempElement = document.createElement("span");
 		let minTempText = document.createTextNode(
-			Math.round(mintemp_f) + "° F"
+			Math.round(mintemp_f) + "° C"
 		);
 		maxTempElement.appendChild(minTempText);
 		// minTempElement.classList.add("maxmin");
